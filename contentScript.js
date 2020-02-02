@@ -29,7 +29,15 @@ const listOfElements = [
 
 	// sibling info
 	document.getElementById("enabledSiblingInfo"),
-	document.querySelector("#disabledSiblingInfo > a")
+	document.querySelector("#disabledSiblingInfo > a"),
+
+	// close
+	document.getElementById("enabledClose"),
+	document.querySelector("#disabledClose > a"),
+
+	// add
+	document.getElementById("enabledAdd"),
+	document.querySelector("#disabledAdd > a")
 ]
 
 const listOfHide = [
