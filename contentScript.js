@@ -46,6 +46,20 @@ const listOfHide = [
 	document.querySelector("#disabledDelete > a")
 ]
 
+const findStudentFields = [
+	document.getElementById("ptFindStudent_form_lastName"),
+	document.getElementById("ptFindStudent_form_familyId"),
+	document.getElementById("ptFindStudent_form_firstName")
+]
+
+const findFamilyFields = [
+	document.getElementById("ptFindFamily_form_lastName"),
+	document.getElementById("ptFindFamily_form_familyId"),
+	document.getElementById("ptFindFamily_form_firstName"),
+	document.getElementById("ptFindFamily_form_areaCode"),
+	document.getElementById("ptFindFamily_form_phoneNo")
+]
+
 chrome.storage.sync.get(['myonoffswitch'], function(result) {
 	console.log('myonoffswitch.checked is ' + result.myonoffswitch)
 	render(result.myonoffswitch)
@@ -59,6 +73,30 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 		}
 	}
 })
+
+// page specific actions
+switch (document.location.pathname) {
+	case "/twebboard/TWEBESL/ptFindStudent.action":
+		// Enable "Return" key to find
+		enableFindByReturn(findStudentFields)
+		break
+	case "/twebboard/TWEBESL/ptFindFamily.action":
+		// Enable "Return" key to find
+		enableFindByReturn(findFamilyFields)
+		break
+	default:
+		break
+}
+
+function enableFindByReturn(elems) {
+	elems.forEach(elem => {
+		elem.addEventListener("keyup", function(e) {
+			if (e.keyCode == 13) {
+				location.href="javascript:clickFindBtn(); void 0";
+			}
+		})
+	})
+}
 
 function render(turnOn) {
 	console.log("Rendering with " + turnOn)
