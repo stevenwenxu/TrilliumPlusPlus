@@ -1,0 +1,20 @@
+{
+  "name": "Trillium++",
+  "version": "1.0",
+  "description": "Trillium Web Family Reception Centre Chrome Extension",
+  "permissions": ["activeTab", "storage", "declarativeContent"],
+  "content_scripts": [
+    {
+      "matches": ["https://webapps.ocdsb.ca/twebboard/TWEBESL/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "page_action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "manifest_version": 2
+}
